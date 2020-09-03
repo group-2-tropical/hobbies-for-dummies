@@ -2,6 +2,8 @@
 const {
   Model
 } = require('sequelize');
+const { createHash } = require('bcryptjs')
+
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -14,24 +16,25 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   User.init({
-    name: DataTypes.STRING,
+    username: DataTypes.STRING,
     email: {
       type:DataTypes.STRING,
       validate : {
         isEmail: {
           args: true,
-          msg : 'Invalid email format'
+          msg : 'Email format is not valid'
         },
         notEmpty:true
-      }
+      },
+      unique: true,
     },
-    password: {
-      type:DataTypes.STRING,
+    password: { 
+      type: DataTypes.STRING,
       allowNull: false,
-      validate : {
-        len : {
-          args: [6,15],
-          msg : 'password minimum 6 maximum 15 characters'
+      validate: {
+        len: {
+          args: [6],
+          msg: "Password minimum six character"
         }
       },
       notEmpty: true
@@ -39,6 +42,11 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'User',
+    hooks : {
+      beforeCreate(user) {
+        user.password = createHash(user.password);
+      }
+    }
   });
   return User;
 };

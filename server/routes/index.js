@@ -1,9 +1,10 @@
 const router = require('express').Router()
-const UserController = require('../controllers/userController')
+const apiEndpoints = require('./endpoints/api')
+const authEndpoints = require('./endpoints/auth')
+const { authentication, authorization } = require('../middlewares/auth')
 
-// router.post('/register', UserController.register)
-// router.post('/register', UserController.login)
-router.post('/users/googleLogin', UserController.googleLogin)
+router
+.use('/api', authentication, apiEndpoints)
+.use('/auth', authEndpoints)
 
-
-module.exports = router
+module.exports = router;
