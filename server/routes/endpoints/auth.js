@@ -1,5 +1,5 @@
 const authEndpoints = require('express').Router()
-const UserController = require('../controllers/UserController')
+const UserController = require('../../controllers/UserController')
 
 authEndpoints
 .post('/register', UserController.register)

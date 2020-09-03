@@ -4,7 +4,7 @@ const authEndpoints = require('./endpoints/auth')
 const { authentication, authorization } = require('../middlewares/auth')
 
 router
-.use('/api', authentication, apiEndpoints)
-.use('/auth', authEndpoints)
+.get('/api', authentication, apiEndpoints)
+.get('/auth', authEndpoints)
 
 module.exports = router;
