@@ -2,7 +2,7 @@ const axios = require('axios')
 const key = process.env.PIXABAY_API_KEY
 
 class PixabayController{
-    static async getPixabay(req, res, next) {
+    static async get(req, res, next) {
         try{
             let result = await axios({
                 method: 'get',
@@ -16,8 +16,7 @@ class PixabayController{
         }catch(err){
             return next(err)
         }
-
-    }  
+    }
 }
 
 module.exports = PixabayController
