@@ -4,10 +4,10 @@ const { comparePassword } = require('../helpers/bcrypt')
 
 class UserController {
     static async register (req, res) {
-        const { email, password } = req.body
+        const { username, email, password } = req.body
         try {
-            const user = await User.create({email, password})
-            return res.status(201).json({email})
+            const user = await User.create({username, email, password})
+            return res.status(201).json({username, email})
         }
         catch(err) {
             return res.status(500).json({message: "Internal server error"})
