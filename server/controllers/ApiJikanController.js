@@ -18,8 +18,7 @@ class JikanController {
                 return res.status(200).json(response.data.results)
             })
             .catch(err => {
-                console.log(err)
-                return res.status(400).json({message: 'bad request!'})
+                return next(err)
             })
     }
 }

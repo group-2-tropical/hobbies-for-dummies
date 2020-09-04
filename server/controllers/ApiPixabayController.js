@@ -14,7 +14,7 @@ class PixabayController{
     
             return res.status(200).json(result.data.hits)
         }catch(err){
-            next(err)
+            return next(err)
         }
 
     }  
