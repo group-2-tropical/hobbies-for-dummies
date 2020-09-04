@@ -1,7 +1,7 @@
 const apiEndpoints = require('express').Router()
-const PixabayController = require('../../controllers/PixabyController')
-const JikanController = require('../../controllers/JikanController')
-const RecipeController = require('../../controllers/RecipeController')
+const PixabayController = require('../../controllers/ApiPixabayController')
+const JikanController = require('../../controllers/ApiJikanController')
+const RecipeController = require('../../controllers/ApiRecipeController')
 
 apiEndpoints.get('/pixabay', PixabayController.getPixabay)
 apiEndpoints.get('/jikan', JikanController.getJikan)
